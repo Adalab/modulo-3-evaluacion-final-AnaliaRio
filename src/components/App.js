@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { matchPath, useLocation } from 'react-router';
-
-
 import getApiData from '../services/wowApi';
 import '../styles/App.scss'
 import Filters from './Filters';
@@ -17,23 +15,17 @@ import ls from '../services/localStorage';
 
 function App() {
 
-  // Using localStorage
-  //Ahora necesitamos verificar si hay datos en localstorage y de ser afirmativo ese datos son lo que agregamos a la variable usuario y  sino vacio, hacemos lo mismo para las variables de estado de los filtros,
-
   const [movieScenes, setMovieScenes] = useState([]);
-  const [filterYear, setFilterYear] = useState('');
-  const [filterMovie, setFilterMovie] = useState(['']);
+  const [filterYear, setFilterYear] = useState(0);
+  const [filterMovie, setFilterMovie] = useState('');
 
   useEffect(() => {
-    if (movieScenes.length === 0) {
-      getApiData().then((dataFromApi) => {
-        console.log(dataFromApi);
-        setMovieScenes(dataFromApi);
-      });
-    }
+    getApiData().then((dataApi) => {
+      setMovieScenes(dataApi);
+    });
   }, []);
 
-  // Save data in local storage with useEffect so that local storage stays updated after changes
+  // Save data in local storage with useEffect so that local storage stays updated after changing
   // Read local storage data and save it in useState so that they are available upon opening the page
   useEffect(() => {
     ls.set('users', movieScenes);
@@ -43,8 +35,9 @@ function App() {
 
   // ---------- FUNCTION - FILTER BY YEAR ----------
   const handleFilterYear = (value) => {
-    setFilterYear(value);
+    setFilterYear(parseInt(value));
   };
+  // The value needs to be parsed to match the type of value given by the API (number)
 
   // ---------- FUNCTION- FILTER BY MOVIE ----------
   const handleFilterMovie = (value) => {
@@ -54,27 +47,44 @@ function App() {
 
   const movieSceneFilters = movieScenes
 
-    // ---------- METHOD - FILTER BY YEAR ----------
-    .filter((movie) => {
-      return filterYear === '' ? true : movie.year === filterYear;
-    })
-
     // ---------- METHOD - FILTER BY MOVIE ----------
     .filter((movie) => {
-      return movie.movie.toLowerCase().includes().toLowerCase;
+      return movie.movie.toLowerCase().includes(filterMovie);
+    })
+
+
+    // ---------- METHOD - FILTER BY YEAR ----------
+    .filter((movie) => {
+      return filterYear === 0 ? true : movie.year === filterYear;
     });
+
+
+
+  // ---------- FUNCTION TO NOT REPEAT YEARS ----------
+  const getYear = () => {
+
+    const movieYear = movieScenes.map((oneYear) => oneYear.year);
+
+    const unrepeatedYear = movieYear.filter((movie, index) => {
+
+      return movieYear.indexOf(movie) === index;
+    });
+
+    return unrepeatedYear;
+  };
+
 
   const { pathname } = useLocation();
   const dataPath = matchPath('/movie/:movieId', pathname);
   console.log(dataPath);
 
   const movieId = dataPath !== null ? dataPath.params.movieId : null;
-  const movieFound = movieScenes.find((item) => item.id === movieId);
+  const movieFound = movieScenes.find((movie) => movie.id === movieId);
 
   return (
     <>
-      <h1>Owen Wilson's "Wow!"</h1>
-      <div>
+      <h1 className="h1">Owen Wilson's "Wow!"</h1>
+      <div className="content">
         <Routes>
           <Route
             path="/"
@@ -83,6 +93,7 @@ function App() {
                 <Filters
                   handleFilterMovie={handleFilterMovie}
                   handleFilterYear={handleFilterYear}
+                  year={getYear()}
                 />
                 <MovieSceneList movieScenes={movieSceneFilters} />
               </>

@@ -1,35 +1,31 @@
-function FilterMovie(props) {
+function FilterMovie (props) {
+  
   const handleChange = (ev) => {
+    ev.preventDefault();
     props.handleFilterMovie(ev.target.value);
   };
-  const renderMovies = () => {
-    return props.movies.map((movie, index) => {
-      return (
-        <li key={index}>
-          <form action=''>
-            <label htmlFor=''>{movie}</label>
-            <input
-              type='search'
-              name='movie'
-              onChange={handleChange}
-              value={props.filterMovie}
-              className='header__search'
-              autoComplete='off'
-              placeholder='Search a movie'
-            />
-          </form>
-        </li>
-      );
-    });
-  };
 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
 
   return (
     <>
-      <label className='form__label display-block'>Movie</label>
-      <ul>{renderMovies()}</ul>
+    <form className="form" action="" onSubmit={handleSubmit}>
+      <label htmlFor='movie'>Movie </label>
+      <input
+        type='search'
+        name='movie'
+        onChange={handleChange}
+        value={props.filterMovie}
+        className='header__search'
+        autoComplete='off'
+        placeholder='Search a movie'
+      />
+    </form>
     </>
   );
-}
+};
+
 
 export default FilterMovie;

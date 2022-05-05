@@ -4,7 +4,7 @@ const getApiData = () => {
   return fetch('https://owen-wilson-wow-api.herokuapp.com/wows/random?results=50')
     .then((response) => response.json())
     .then((data) => {
-      const dataClean = data.map((movie, index => {
+      const dataClean = data.map((movie, index) => {
         return {
           id: index,
           poster: movie.poster,
@@ -15,6 +15,7 @@ const getApiData = () => {
           audio: movie.video.audio,
         };
       });
+      console.log(dataClean);
       return dataClean;
     });
 };
