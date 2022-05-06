@@ -36,6 +36,10 @@
 
   &__label {
     font-size: 1.4rem;
+
+    @media all and (max-width: 700px) {
+      font-size: 1rem;
+    }
   }
 
   &__input {
@@ -48,6 +52,10 @@
 
     &:focus {
       background-color: $color3;
+    }
+
+    @media all and (max-width: 700px) {
+      font-size: 1rem;
     }
   }
 }
