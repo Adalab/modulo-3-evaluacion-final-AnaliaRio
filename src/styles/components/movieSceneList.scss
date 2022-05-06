@@ -1,0 +1,7 @@
+.cards {
+    display: grid; /* 1 */
+    grid-template-columns: repeat(auto-fill, 157px); /* 2 */
+    grid-gap: 1.5rem; /* 3 */
+    justify-content: space-between; /* 4 */
+    margin: 3rem 2rem 6rem;
+}

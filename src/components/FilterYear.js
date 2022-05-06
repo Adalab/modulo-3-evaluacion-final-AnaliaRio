@@ -1,25 +1,28 @@
 function FilterYear(props) {
+
   const handleChange = (ev) => {
     props.handleFilterYear(ev.target.value);
   };
 
 
   const renderYear = () => {
-    return props.year.map((year, index) => {
+    return props.year.sort().map((year, index) => {
       return <option key={index}>{year}</option>;
     });
   };
+  // Sort - Arrange years in chronological order
 
 
 
   return (
     <>
-    <form>
-      <label htmlFor="year">Year</label>
+    <form className='form'>
+      <label htmlFor="year" className='form__label'>Year</label>
       <select
         name="year"
         onChange={handleChange}
         value={props.filterYears}
+        className='form__input'
       >
         <option value="0">All</option>
         {renderYear()}

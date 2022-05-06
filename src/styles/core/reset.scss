@@ -1,14 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap');
 
 * {
-  margin: 10px;
   padding: 0;
-  font-family: 'Permanent Marker', cursive;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100wh;
   font-size: 1rem;
   box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  color: $color6;
 }
 
 a {
-  color: black;
+  color: $color6;
   text-decoration: none;
 }

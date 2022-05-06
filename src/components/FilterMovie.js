@@ -11,14 +11,23 @@ function FilterMovie (props) {
 
   return (
     <>
-    <form className="form" action="" onSubmit={handleSubmit}>
-      <label htmlFor='movie'>Movie </label>
+    <form
+      className="form"
+      action=""
+      onSubmit={handleSubmit}
+    >
+      <label
+        htmlFor='movie'
+        className='form__label'
+      >
+        Movie
+      </label>
       <input
         type='search'
         name='movie'
         onChange={handleChange}
         value={props.filterMovie}
-        className='header__search'
+        className='form__input'
         autoComplete='off'
         placeholder='Search a movie'
       />

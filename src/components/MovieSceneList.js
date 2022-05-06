@@ -2,7 +2,13 @@ import MovieSceneItem from "./MovieSceneItem";
 
 
 function MovieSceneList(props) {
-  const movieElements = props.movieScenes.map((movie) => {
+
+  // Pending - SORT ALPHABETICALLY
+  const movieElements = props.movieScenes
+
+  .sort((a, b) => a.movie.localeCompare(b.movie))
+
+  .map((movie) => {
     return (
       <li className="card" key={movie.index}>
         <MovieSceneItem movie={movie} />
@@ -11,6 +17,7 @@ function MovieSceneList(props) {
   });
 
 
+  
   return (
     <section>
       <ul className="cards">{movieElements}</ul>
