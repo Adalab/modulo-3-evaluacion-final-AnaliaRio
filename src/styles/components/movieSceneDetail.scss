@@ -8,11 +8,20 @@
   overflow-y: auto;
   overflow-x: hidden;
 
+  @media all and (max-width: 700px) {
+    width: 13rem;
+    height: 30rem;
+  }
+
   &__poster {
     width: 18rem;
     border-radius: 0.6rem 0.6rem 0rem 0rem;
     margin-top: 0rem;
     margin-left: 0rem;
+
+    @media all and (max-width: 700px) {
+      width: 13rem;
+    }
   }
 
   &__title {
@@ -20,6 +29,10 @@
     margin: 0;
     padding: 0.5rem 1rem 0.2rem;
     font-size: 1.2rem;
+
+    @media all and (max-width: 700px) {
+      font-size: 0.9rem;
+    }
   }
 
   &__description {
@@ -27,45 +40,10 @@
     margin: 0;
     padding: 0.15rem 1rem;
     font-size: 0.9rem;
-  }
 
-
-
-  @media all and (max-width: 700px) {
-
-    @include column();
-    justify-content: space-between;
-    margin: 0;
-    width: 13rem;
-    height: 30rem;
-    border-radius: 1rem;
-    background-color: $color2;
-    border: 0.14rem solid $color1;
-    overflow-y: auto;
-    overflow-x: hidden;
-  
-    &__poster {
-      width: 13rem;
-      border-radius: 0.6rem 0.6rem 0rem 0rem;
-      margin-top: 0rem;
-      margin-left: 0rem;
-    }
-  
-    &__title {
-      display: block;
-      margin: 0;
-      padding: 0rem 1rem;
-      font-size: 0.9rem;
-    }
-  
-    &__description {
-      display: block;
-      margin: 0;
-      padding: 0.2rem 1rem;
+    @media all and (max-width: 700px) {
       font-size: 0.8rem;
     }
-
-
   }
 }
 
