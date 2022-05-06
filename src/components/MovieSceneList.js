@@ -18,10 +18,10 @@ function MovieSceneList(props) {
     <>
       {movieElements.length === 0
         ?
-        <div className='noresults'>
+        <section className='noresults'>
           <p>Sorry... No "wow" scenes here 😕</p>
           <p>Try another word 👀</p>
-        </div>
+        </section>
         :
           <section>
             <ul className='cards'>{movieElements}</ul>

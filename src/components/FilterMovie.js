@@ -7,13 +7,13 @@ function FilterMovie (props) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+  
   };
 
   return (
-    <>
+  
     <form
       className="form"
-      action=""
       onSubmit={handleSubmit}
     >
       <label
@@ -32,7 +32,7 @@ function FilterMovie (props) {
         placeholder='Search a movie'
       />
     </form>
-    </>
+    
   );
 };
 

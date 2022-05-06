@@ -3,10 +3,11 @@ import FilterMovie from './FilterMovie';
 
 
 function Filters (props) {
-  return (
-    <section className="col2">
-      <form className="filters">
 
+
+
+  return (
+    <section className="filters">
         <FilterMovie
           movies={props.movies}
           handleFilterMovie={props.handleFilterMovie}
@@ -15,9 +16,6 @@ function Filters (props) {
         <FilterYear
         handleFilterYear={props.handleFilterYear}
         year={props.year}/>
-
-
-      </form>
     </section>
   );
 }

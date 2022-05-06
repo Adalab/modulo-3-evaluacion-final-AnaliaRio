@@ -4,35 +4,40 @@ import { matchPath, useLocation } from "react-router";
 
 import getApiData from "../services/wowApi";
 import "../styles/App.scss";
+import NotFoundPage from "./NotFoundPage";
+import ls from "../services/localStorage";
 import Header from "./Header";
 import Filters from "./Filters";
 import MovieSceneList from "./MovieSceneList";
 import MovieSceneDetail from "./MovieSceneDetail";
 import Footer from "./Footer";
-import NotFoundPage from "./NotFoundPage";
-
-
-// Load data from localStorage
-// This file contains the functions to modify and get the data from localStorage
-import ls from "../services/localStorage";
 
 function App() {
-  const [movieScenes, setMovieScenes] = useState([]);
-  const [filterYear, setFilterYear] = useState(0);
-  const [filterMovie, setFilterMovie] = useState("");
 
-  useEffect(() => {
-    getApiData().then((dataApi) => {
-      setMovieScenes(dataApi);
-    });
+  const [movieScenes, setMovieScenes] = useState(ls.get("lsMovieScenes", []));
+  const [filterYear, setFilterYear] = useState(0);
+  const [filterMovie, setFilterMovie] = useState('');
+
+
+  // HOOK
+  useEffect ( () => {
+
+    if (movieScenes.length === 0) {
+      getApiData().then((apiData) => {
+        setMovieScenes(apiData);
+      });
+    }
+ 
   }, []);
+
 
   // Save data in local storage with useEffect so that local storage stays updated after changing
   // Read local storage data and save it in useState so that they are available upon opening the page
-  useEffect(() => {
-    ls.set("users", movieScenes);
-    ls.set("filterMovie", filterMovie);
+  useEffect ( () => {
+    ls.set("lsMovieScenes", movieScenes);
   }, [movieScenes, filterMovie]);
+
+
 
   // ---------- FUNCTION - FILTER BY YEAR ----------
   const handleFilterYear = (value) => {
