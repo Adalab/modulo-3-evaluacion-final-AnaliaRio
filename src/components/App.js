@@ -9,6 +9,8 @@ import Filters from "./Filters";
 import MovieSceneList from "./MovieSceneList";
 import MovieSceneDetail from "./MovieSceneDetail";
 import Footer from "./Footer";
+import NotFoundPage from "./NotFoundPage";
+
 
 // Load data from localStorage
 // This file contains the functions to modify and get the data from localStorage
@@ -111,6 +113,11 @@ function App() {
             </>
           }
         />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
+        />
+
       </Routes>
     </>
   );
