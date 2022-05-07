@@ -1,6 +1,6 @@
 .header {
   @include rowCenterContent();
-  border-bottom: $color1 solid 0.2rem;
+  border-bottom: $color1 solid 0.15rem;
   gap: 1rem;
   background-color: $color2;
   position: sticky;

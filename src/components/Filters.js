@@ -9,7 +9,7 @@ function Filters (props) {
   return (
     <section className="filters">
         <FilterMovie
-          movies={props.movies}
+          filterMovie={props.filterMovie}
           handleFilterMovie={props.handleFilterMovie}
         />
 

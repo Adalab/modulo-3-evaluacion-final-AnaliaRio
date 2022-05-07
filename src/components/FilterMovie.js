@@ -28,7 +28,6 @@ function FilterMovie (props) {
         onChange={handleChange}
         value={props.filterMovie}
         className='form__input'
-        autoComplete='off'
         placeholder='Search a movie'
       />
     </form>

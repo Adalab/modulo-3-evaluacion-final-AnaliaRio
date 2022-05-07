@@ -1,25 +1,35 @@
+// ---------- IMPORTS ----------
+
+// Dependencies
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { matchPath, useLocation } from "react-router";
 
-import getApiData from "../services/wowApi";
+// Styles
 import "../styles/App.scss";
-import NotFoundPage from "./NotFoundPage";
+
+// Services
+import getApiData from "../services/wowApi";
 import ls from "../services/localStorage";
+
+// Components
 import Header from "./Header";
 import Filters from "./Filters";
 import MovieSceneList from "./MovieSceneList";
 import MovieSceneDetail from "./MovieSceneDetail";
 import Footer from "./Footer";
+import NotFoundPage from "./NotFoundPage";
+
 
 function App() {
 
+  // ---------- STATE VARIABLES ----------
   const [movieScenes, setMovieScenes] = useState(ls.get("lsMovieScenes", []));
   const [filterYear, setFilterYear] = useState(0);
   const [filterMovie, setFilterMovie] = useState('');
 
 
-  // HOOK
+  // ---------- HOOK TO GET API DATA ----------
   useEffect ( () => {
 
     if (movieScenes.length === 0) {
@@ -31,6 +41,7 @@ function App() {
   }, []);
 
 
+  // ---------- HOOK FOR LOCAL STORAGE ----------
   // Save data in local storage with useEffect so that local storage stays updated after changing
   // Read local storage data and save it in useState so that they are available upon opening the page
   useEffect ( () => {
@@ -38,30 +49,32 @@ function App() {
   }, [movieScenes, filterMovie]);
 
 
+  // ---------- FUNCTION --> HANDLE MOVIE FILTER ----------
+  const handleFilterMovie = (value) => {
+    setFilterMovie(value);
+  };
 
-  // ---------- FUNCTION - FILTER BY YEAR ----------
+
+  // ---------- FUNCTION --> HANDLE YEAR FILTER ----------
   const handleFilterYear = (value) => {
     setFilterYear(parseInt(value));
   };
   // The value needs to be parsed to match the type of value given by the API (number)
 
-  // ---------- FUNCTION- FILTER BY MOVIE ----------
-  const handleFilterMovie = (value) => {
-    setFilterMovie(value.toLowerCase());
-  };
 
-  // ----- SAVE LIST OF FILTERED SCENES IN A CONSANT -----
+  // ----- CONSANT SAVING THE FILTERED SCENE LIST  -----
   const movieSceneFilters = movieScenes
 
-    // ---------- METHOD - FILTER BY MOVIE ----------
+    // ---------- METHOD --> FILTER BY MOVIE ----------
     .filter((movie) => {
       return movie.movie.toLowerCase().includes(filterMovie.toLowerCase());
     })
 
-    // ---------- METHOD - FILTER BY YEAR ----------
+    // ---------- METHOD --> FILTER BY YEAR ----------
     .filter((movie) => {
       return filterYear === 0 ? true : movie.year === filterYear;
     });
+
 
   // ---------- FUNCTION TO NOT REPEAT YEARS ----------
   const getYear = () => {
@@ -73,6 +86,7 @@ function App() {
 
     return unrepeatedYear;
   };
+
 
   // -------------------- ROUTES --------------------
   const { pathname } = useLocation();
@@ -86,6 +100,10 @@ function App() {
   console.log(movieId);
   console.log(movieFound);
 
+
+
+
+  // -------------------- RETURN --------------------
   return (
     <>
       <Routes>
@@ -97,6 +115,7 @@ function App() {
                 <Header />
                 <Filters
                   handleFilterMovie={handleFilterMovie}
+                  filterMovie={filterMovie}
                   handleFilterYear={handleFilterYear}
                   year={getYear()}
                 />
