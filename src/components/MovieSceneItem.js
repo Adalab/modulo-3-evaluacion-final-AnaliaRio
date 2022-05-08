@@ -13,7 +13,7 @@ console.log(props);
       />
       <h4 className="card__title">{props.movie.movie} ({props.movie.year})</h4>
       <p className="card__description line">"{props.movie.full_line}"</p>
-      <p className="card__description">{props.movie.director}</p>
+
     </Link>
   );
 }

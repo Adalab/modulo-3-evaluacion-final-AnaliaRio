@@ -1,13 +1,13 @@
 .cards {
-    display: grid; /* 1 */
-    grid-template-columns: repeat(auto-fill, 157px); /* 2 */
-    grid-gap: 1rem; /* 3 */
-    justify-content: space-between; /* 4 */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 157px);
+    grid-gap: 1rem;
+    justify-content: space-between;
     margin: 3rem 2rem 6rem;
 
     @media all and (max-width: 700px) {
         margin-top: 0rem;
-      }
+    }
 
 
 }
