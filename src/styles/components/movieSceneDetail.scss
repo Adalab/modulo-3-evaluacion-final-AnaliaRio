@@ -1,8 +1,8 @@
 .detail {
 
   @include centerElement;
-  width: 15rem;
-  height: 30rem;
+  width: 20vw;
+  height: 32rem;
   border-radius: 1rem;
   background-color: $color2;
   border: 0.3rem solid $color1;
@@ -15,7 +15,7 @@
   }
 
   &__poster {
-    width: 15rem;
+    width: 20vw;
     border-radius: 0.6rem 0.6rem 0rem 0rem;
     margin-top: 0rem;
     margin-left: 0rem;
