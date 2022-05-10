@@ -5,14 +5,6 @@ function FilterTotalWow(props) {
   };
 
 
-  const renderTotalWow = () => {
-    return props.wow.map((wow, index) => {
-      return <option key={index}>{wow}</option>;
-    });
-  };
-  // Sort - Arrange years in chronological order
-
-
 
   return (
     <>

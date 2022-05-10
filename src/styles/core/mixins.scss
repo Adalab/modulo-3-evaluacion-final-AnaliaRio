@@ -37,8 +37,10 @@
   &__label {
     font-size: 1.4rem;
 
-    @media all and (max-width: 700px) {
+    @media all and (max-width: 900px) {
       font-size: 1rem;
+      margin-top: 0rem;
+      gap: 0rem;
     }
   }
 
@@ -54,7 +56,7 @@
       background-color: $color3;
     }
 
-    @media all and (max-width: 700px) {
+    @media all and (max-width: 900px) {
       font-size: 1rem;
     }
   }
