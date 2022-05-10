@@ -27,6 +27,8 @@ function App() {
   const [movieScenes, setMovieScenes] = useState(ls.get("lsMovieScenes", []));
   const [filterYear, setFilterYear] = useState(0);
   const [filterMovie, setFilterMovie] = useState('');
+  const [filterTotalWow, setFilterTotalWow] = useState(0);
+
 
 
   // ---------- HOOK TO GET API DATA ----------
@@ -61,6 +63,11 @@ function App() {
   };
   // The value needs to be parsed to match the type of value given by the API (number)
 
+    // ---------- FUNCTION --> HANDLE TOTAL WOW FILTER ----------
+    const handleFilterTotalWow = (value) => {
+      setFilterTotalWow(parseInt(value));
+    };
+
 
   // ----- CONSANT SAVING THE FILTERED SCENE LIST  -----
   const movieSceneFilters = movieScenes
@@ -68,6 +75,11 @@ function App() {
     // ---------- METHOD --> FILTER BY MOVIE ----------
     .filter((movie) => {
       return movie.movie.toLowerCase().includes(filterMovie.toLowerCase());
+    })
+
+    // ---------- METHOD --> FILTER BY TOTAL WOW ----------
+    .filter((movie) => {
+      return filterTotalWow === 0 ? true : movie.wow === filterTotalWow;
     })
 
     // ---------- METHOD --> FILTER BY YEAR ----------
@@ -116,6 +128,10 @@ function App() {
                 <Filters
                   handleFilterMovie={handleFilterMovie}
                   filterMovie={filterMovie}
+
+                  handleFilterTotalWow={handleFilterTotalWow}
+                  filterTotalWow={filterTotalWow}                  
+
                   handleFilterYear={handleFilterYear}
                   year={getYear()}
                 />

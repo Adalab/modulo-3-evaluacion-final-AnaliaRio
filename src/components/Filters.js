@@ -1,5 +1,6 @@
 import FilterYear from './FilterYear';
 import FilterMovie from './FilterMovie';
+import FilterTotalWow from './FilterTotalWow';
 
 
 function Filters (props) {
@@ -11,6 +12,11 @@ function Filters (props) {
         <FilterMovie
           filterMovie={props.filterMovie}
           handleFilterMovie={props.handleFilterMovie}
+        />
+
+        <FilterTotalWow
+          filterTotalWow={props.filterTotalWow}
+          handleFilterTotalWow={props.handleFilterTotalWow}
         />
 
         <FilterYear

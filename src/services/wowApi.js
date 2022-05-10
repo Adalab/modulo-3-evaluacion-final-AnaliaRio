@@ -13,6 +13,8 @@ const getApiData = () => {
           year: movie.year,
           director: movie.director,
           audio: movie.audio,
+          wow: movie.total_wows_in_movie,
+
         };
       });
       console.log(dataClean);
