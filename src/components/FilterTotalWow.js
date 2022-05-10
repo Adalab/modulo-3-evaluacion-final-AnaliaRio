@@ -9,7 +9,7 @@ function FilterTotalWow(props) {
   return (
     <>
     <form className='form'>
-      <label htmlFor="wow" className='form__label'>Total wows in movie</label>
+      <label htmlFor="wow" className='form__label'>Total "wows" in movie</label>
       <select
         name="wow"
         onChange={handleChange}
